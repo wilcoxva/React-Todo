@@ -2,7 +2,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
-const arr = {
+const todo = {
   task: 'Organize Garage',
   id: 1528817077286,
   completed: false
