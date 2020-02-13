@@ -20,13 +20,58 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      todo
     };
   }
+
+  addTodo = (e, todo) => {
+    e.preventDefault();
+
+    const newTodo = {
+      name: todo,
+      id: Date.now(),
+      purchased: false
+    };
+
+    this.setState({
+      todo: [...this.state.todo, newTodo]
+    });
+  };
+
+  toggleTodo = todoId => {
+    this.setState({
+      todo: this.state.todo.map(todo => {
+        if (todoId === todo.id) {
+          return {
+            ...todo,
+            purchcased: !item.purchased
+          };
+        }
+
+        return todo;
+      })
+    });
+  };
+
+  clearPurchased = e => {
+    e.preventDefault();
+    this.setState({
+      todo: this.state.todo.filter(todo => todo.purchased === false)
+    });
+  };
+
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <div>
+          <h1>To-do List</h1>
+          <TodoForm addTodo={this.addTodo} />
+        </div>
+        <TodoList
+          todo={this.state.todo}
+          toggleItem={this.toggleItem}
+          clearPurchased={this.clearPurchased}
+        />
       </div>
     );
   }
